@@ -10,7 +10,7 @@ from code.Const import WIN_WIDTH, COLOR_WHITE, COLOR_RED, COLOR_BLACK, MENU_OPTI
 class Menu:
     def __init__(self, window):
         self.window = window
-        self.surf = pygame.image.load('./asset/MenuBG.png')
+        self.surf = pygame.image.load('./asset/MenuBG.png').convert_alpha()
         self.rect = self.surf.get_rect(left=0, top=0)
 
     def run(self, ):
@@ -35,7 +35,7 @@ class Menu:
                     pygame.quit()  # Close Window
                     quit()  # End pygame
 
-                # Selecter Options from Menu
+                # Selector Options from Menu
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_DOWN: #DOWN KEY
                         if menu_option < len(MENU_OPTION) - 1:
