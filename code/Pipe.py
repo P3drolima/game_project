@@ -1,6 +1,6 @@
 import pygame
 
-from code.Const import SCREEN_HEIGHT, GAME_SPEED, PIPE_WIDTH, PIPE_HEIGHT
+from code.Const import SCREEN_HEIGHT, PIPE_WIDTH, PIPE_HEIGHT, GAME_SPEED
 
 
 class Pipe(pygame.sprite.Sprite):
@@ -20,4 +20,4 @@ class Pipe(pygame.sprite.Sprite):
         self.mask = pygame.mask.from_surface(self.image)
 
     def update(self):
-        self.rect[0] -= GAME_SPEED
+        self.rect[0] -= GAME_SPEED  # Move o cano para a esquerda

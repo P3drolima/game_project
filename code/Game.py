@@ -4,8 +4,9 @@ import pygame
 from pygame import QUIT, KEYDOWN, K_SPACE
 
 from code.Bird import Bird
-from code.Const import SCREEN_WIDTH, SCREEN_HEIGHT, GROUND_WIDTH
-from code.Ground import Ground, get_random_pipes, is_off_screen
+from code.Const import SCREEN_WIDTH, SCREEN_HEIGHT, GROUND_WIDTH, FPS, PIPE_WIDTH
+from code.Ground import Ground
+from code.Score import Score, get_random_pipes, is_off_screen
 
 
 def main_game():
@@ -29,10 +30,11 @@ def main_game():
         pipe_group.add(pipes[0])
         pipe_group.add(pipes[1])
 
+    score = Score()  # Instância do placar
     clock = pygame.time.Clock()
 
     while True:
-        clock.tick(30)
+        clock.tick(FPS)  # Controla o FPS do jogo
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
@@ -42,6 +44,12 @@ def main_game():
                     bird.bump()
 
         screen.blit(BACKGROUND, (0, 0))
+
+        # Verifica se o pássaro passou por um par de canos
+        for pipe in pipe_group:
+            if pipe.rect[0] + PIPE_WIDTH < bird.rect[0] and not hasattr(pipe, 'scored'):
+                score.increase()  # Aumenta a pontuação
+                pipe.scored = True  # Marca o cano como pontuado
 
         if is_off_screen(ground_group.sprites()[0]):
             ground_group.remove(ground_group.sprites()[0])
@@ -62,6 +70,9 @@ def main_game():
         bird_group.draw(screen)
         pipe_group.draw(screen)
         ground_group.draw(screen)
+
+        score.update()
+        score.draw(screen)  # Desenha o placar na tela
 
         pygame.display.update()
 

@@ -1,7 +1,10 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 import sys
 
-import pygame
-from pygame import QUIT, MOUSEBUTTONDOWN
+import pygame.image
+from pygame import Surface, Rect, QUIT, MOUSEBUTTONDOWN
+from pygame.font import Font
 
 from code.Const import SCREEN_WIDTH, SCREEN_HEIGHT
 

@@ -23,7 +23,7 @@ class Bird(pygame.sprite.Sprite):
         self.current_image = (self.current_image + 1) % 3
         self.image = self.images[self.current_image]
         self.speed += GRAVITY
-        self.rect[1] += self.speed  # higher "update"
+        self.rect[1] += self.speed  # Atualiza a altura
 
     def bump(self):
-        self.speed = -SPEED  # Bird "jump"
+        self.speed = -SPEED  # Faz o pássaro "pular"
